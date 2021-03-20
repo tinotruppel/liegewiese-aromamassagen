@@ -259,9 +259,24 @@ a:hover {
     position: relative;
 }
 
+.columns {
+    column-count: 3;
+}
+
+hr {
+    border-top: 1px solid #72ac00;
+    border-bottom: none;
+    width: 30%;
+    margin: 15px auto;
+}
+
 @media (max-width: 890px) {
     #logo, .quotation {
         display: none;
+    }
+
+    .columns {
+        column-count: 2;
     }
 }
 
@@ -277,7 +292,12 @@ a:hover {
     #content {
         margin-left: 0;
     }
+
+    .columns {
+        column-count: 1;
+    }
 }
+
 
 
 
