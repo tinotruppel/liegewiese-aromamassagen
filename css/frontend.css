@@ -261,13 +261,14 @@ a:hover {
 
 .columns {
     column-count: 3;
+    text-align: center;
 }
 
 hr {
     border-top: 1px solid #72ac00;
     border-bottom: none;
-    width: 30%;
-    margin: 15px auto;
+    width: 50%;
+    margin: 30px auto;
 }
 
 @media (max-width: 890px) {
