@@ -199,6 +199,8 @@ a:hover {
     font-size: 11px;
     text-transform: uppercase;
     margin-top: 77px;
+    background-color: #72ac00;
+    margin-left: 0;
 }
 
 #footer ul li {
