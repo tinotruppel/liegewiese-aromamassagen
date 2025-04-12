@@ -1,8 +1,38 @@
 $(document).ready(function() {
     $("img.box").fancybox();
+    $("a.box").fancybox({
+        'hideOnContentClick': false
+    });
 
     const quotation = quotations[Math.floor(Math.random()*quotations.length)];
     $("#content").append('<div class="quotation"><div>"' + quotation.text + '"</div><div class="author">' + quotation.author + '</div></div>');
+
+    // Hamburger menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (navToggle && navLinks) { // Check if elements exist
+        // Toggle menu on button click
+        navToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent this click from bubbling to document
+            navLinks.classList.toggle('nav-open');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            // If click is outside the navigation
+            if (navLinks && navLinks.classList.contains('nav-open') && 
+                !navLinks.contains(e.target) && 
+                e.target !== navToggle) {
+                navLinks.classList.remove('nav-open');
+            }
+        });
+        
+        // Prevent clicks inside the menu from closing it
+        navLinks.addEventListener('click', function(e) {
+            e.stopPropagation(); // Stops the click from reaching the document
+        });
+    }
 });
 
 const quotations = [

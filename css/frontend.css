@@ -146,6 +146,7 @@ a:hover {
     text-transform: uppercase;
     overflow: hidden;
     margin-top:15px;
+    position: relative;
 }
 
 #navigation ul {
@@ -273,8 +274,70 @@ hr {
     margin: 30px auto;
 }
 
+/* Hamburger Menu Button Styles (Moved Here) */
+.nav-toggle {
+    display: none; /* Hidden on desktop */
+    position: absolute;
+    top: 15px; /* Increased from 10px for more spacing from top */
+    right: 15px;
+    background: rgba(114, 172, 0, 0.1); /* Light green background */
+    border: 1px solid rgba(114, 172, 0, 0.3); /* Subtle border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    padding: 10px; /* Increased padding for a larger touch target */
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 24px; /* Explicitly setting width */
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    background: #72ac00; /* Color of the hamburger lines */
+    width: 24px; /* Increased width from 2em */
+    height: 3px;
+    border-radius: 1em;
+    transition: transform 250ms ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.hamburger::before { top: -8px; } /* Position 8px above the middle line */
+.hamburger::after { top: 8px; }   /* Position 8px below the middle line */
+
+/* Teaser-Bild (wie auf Kontaktseite) */
+.teaser {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 20px 0;
+}
+
 @media (max-width: 890px) {
-    #logo, .quotation {
+    #logo {
+        /* Smaller logo in tablet view */
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 5px;
+    }
+    
+    #logo img {
+        width: 150px; /* Adjust width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    
+    .quotation {
         display: none;
     }
 
@@ -287,17 +350,140 @@ hr {
     #croupon-link {
         display: none;
     }
+    
+    #header {
+        position: relative;
+        text-align: center;
+        height: auto;
+        padding: 10px 0 50px 0; /* Noch mehr Abstand unten (war 30px) */
+        margin-bottom: 30px; /* Noch mehr Abstand nach dem Header (war 15px) */
+    }
+    
+    #header #flower-image {
+        display: none;
+    }
+    
+    #logo {
+        float: none;
+        width: auto; 
+        position: relative;
+        left: 0;
+        text-align: center;
+        padding: 5px 0;
+        margin: 0 auto;
+    }
+    
+    #logo img {
+        width: 160px;
+        height: auto;
+    }
 
     #navigation {
         float: none;
+        width: auto;
+        text-align: right;
+        margin-top: 40px; /* Noch mehr Abstand vom Header (war 20px) */
+        overflow: visible;
+        position: relative;
+        z-index: 100;
+    }
+
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        top: 25px; /* Unverändert lassen */
+        right: 15px;
+        background: rgba(114, 172, 0, 0.1);
+        border: 1px solid rgba(114, 172, 0, 0.3);
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        background-color: rgba(254, 255, 153, 0.95);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        border: 1px solid rgba(114, 172, 0, 0.3);
+        border-radius: 4px;
+        left: 10px;
+        right: 10px;
+        top: 70px; /* Adjusted to account for new button position */
+        text-align: left;
+        padding: 1em;
+        z-index: 999;
+    }
+
+    .nav-links.nav-open {
+        display: block;
+    }
+
+    #navigation ul {
+        margin-bottom: 1em;
+    }
+
+    #navigation ul li {
+        list-style-type: none;
+        margin-bottom: 0.5em;
+    }
+
+    #navigation a {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    #navigation a:hover,
+    #navigation li.aktiv a {
+        background: none;
+        color: #375a0a;
+        text-decoration: underline;
     }
 
     #content {
         margin-left: 0;
+        padding: 25px 15px 15px 15px; /* Mehr Abstand oben (war 15px) */
+    }
+
+    #content h1 {
+        margin-top: 10px; /* Give headings some extra space */
     }
 
     .columns {
         column-count: 1;
+    }
+
+    #footer {
+        text-align: center; /* Links zentrieren */
+        padding: 15px 0; /* Mehr vertikaler Abstand */
+    }
+
+    #footer ul {
+        float: none; /* Nicht mehr rechts ausrichten */
+        margin: 50px auto 0; /* Zentrieren und Abstand von oben */
+        padding: 10px 20px; /* Mehr Abstand zum Rand (horizontal) */
+        width: auto; /* Automatische Breite */
+        max-width: 100%; /* Nicht über Container hinausragen */
+        display: inline-block; /* Um Text zu zentrieren */
+        box-sizing: border-box; /* Padding in Breite einbeziehen */
+    }
+
+    #footer ul li {
+        display: inline; /* Inline bleiben */
+        margin-right: 12px;
+        white-space: normal; /* Normales Umbruchverhalten - kann umbrechen wenn nötig */
+        word-wrap: break-word; /* Lange Wörter umbrechen */
+    }
+
+    /* Teaser-Bild in der mobilen Ansicht */
+    .teaser {
+        float: none; /* Kein Float in mobiler Ansicht */
+        margin: 0 auto 25px auto; /* Zentriert mit großem Abstand unten */
+        width: 100%; /* Volle Breite */
+        max-height: 200px; /* Begrenzte Höhe */
+        object-fit: cover; /* Bild wird zugeschnitten, um Proportionen beizubehalten */
+        object-position: center; /* Zentriertes Zuschneiden */
     }
 }
 
